@@ -24,6 +24,11 @@ namespace UnitTestPractice
 
         public async Task<WikipediaSearchResult> SearchTitles(string query)
         {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                throw new ArgumentNullException(nameof(query), "The parameter cannot be null.");
+            }
+
             _parameters.Clear();
             _parameters.Add(ACTION, "query");
             _parameters.Add(FORMAT, "json");
